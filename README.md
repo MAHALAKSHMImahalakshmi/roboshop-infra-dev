@@ -1,10 +1,11 @@
 # roboshop-infra-dev
 ```mermaid
+```mermaid
 flowchart LR
   %% External Users
-  UserBrowser[User Browser\nhttps://dev.srivenkata.shop]
-  VPN_User[Remote User via VPN]
-  Bastion_User[Admin via Bastion]
+  UserBrowser["User Browser<br>https://dev.srivenkata.shop"]
+  VPN_User["Remote User via VPN"]
+  Bastion_User["Admin via Bastion"]
 
   %% AWS Account
   subgraph AWS_Account["AWS Account"]
@@ -13,34 +14,34 @@ flowchart LR
     %% Public Subnet
     subgraph Public_Subnet["Public Subnet"]
       direction TB
-      Bastion[Bastion Host \n (SSH jumpbox)]
-      VPN((VPN Gateway))
-      NAT((NAT Gateway))
-      FE_ALB[[Frontend ALB\n(HTTPS :443) \n Rule: dev.srivenkata.shop -> frontend-tg]]
-      Frontend_TG[[Frontend Target Group \n (frontend instances/containers)]]
+      Bastion["Bastion Host<br>(SSH jumpbox)"]
+      VPN["VPN Gateway"]
+      NAT["NAT Gateway"]
+      FE_ALB["Frontend ALB<br>(HTTPS :443)<br>Rule: dev.srivenkata.shop -> frontend-tg"]
+      Frontend_TG["Frontend Target Group<br>(frontend instances/containers)"]
     end
 
     %% Private Subnet (Apps)
     subgraph Private_Subnet["Private Subnet (App Layer)"]
       direction TB
-      BE_ALB[[Backend ALB\n(HTTP :80)\nHost rules -> service target groups]]
+      BE_ALB["Backend ALB<br>(HTTP :80)<br>Host rules -> service target groups"]
       subgraph Services["Application Services (AutoScaling / ECS)"]
         direction TB
-        Catalogue[catalogue\ncatalogue.backend-dev.srivenkata.shop\nTG: catalogue-tg]
-        User[user\nuser.backend-dev.srivenkata.shop\nTG: user-tg]
-        Cart[cart\ncart.backend-dev.srivenkata.shop\nTG: cart-tg]
-        Shipping[shipping\nshipping.backend-dev.srivenkata.shop\nTG: shipping-tg]
-        Payment[payment\npayment.backend-dev.srivenkata.shop\nTG: payment-tg]
+        Catalogue["catalogue<br>catalogue.backend-dev.srivenkata.shop<br>TG: catalogue-tg"]
+        User["user<br>user.backend-dev.srivenkata.shop<br>TG: user-tg"]
+        Cart["cart<br>cart.backend-dev.srivenkata.shop<br>TG: cart-tg"]
+        Shipping["shipping<br>shipping.backend-dev.srivenkata.shop<br>TG: shipping-tg"]
+        Payment["payment<br>payment.backend-dev.srivenkata.shop<br>TG: payment-tg"]
       end
     end
 
     %% Database Subnet
     subgraph DB_Subnet["Database Subnet (Private)"]
       direction TB
-      MongoDB(((MongoDB)))
-      Redis(((Redis)))
-      MySQL(((MySQL)))
-      RabbitMQ(((RabbitMQ)))
+      MongoDB["MongoDB"]
+      Redis["Redis"]
+      MySQL["MySQL"]
+      RabbitMQ["RabbitMQ"]
     end
 
   end
@@ -48,7 +49,7 @@ flowchart LR
   %% User traffic flow
   UserBrowser -->|HTTPS 443| FE_ALB
   FE_ALB --> Frontend_TG
-  Frontend_TG --> Frontend_App[Frontend App\n(SPA + proxies /api/*)]
+  Frontend_TG --> Frontend_App["Frontend App<br>(SPA + proxies /api/*)"]
   Frontend_App --> BE_ALB
 
   %% Backend ALB routing
@@ -79,8 +80,7 @@ flowchart LR
   Catalogue -->|egress| NAT
 
   %% Security Group Notes
-  classDef sgNote fill:#fff4cc,stroke:#e0a800;
-  SG_Notes[/"Security Groups:\n- mongodb_vpn: allow 22,27017 from VPN\n- mongodb_catalogue: allow 27017 from catalogue\n- mongodb_user: allow 27017 from user\n- redis_vpn, redis_user, redis_cart\n- app SGs (catalogue,user,cart,shipping,payment)\n- backend_alb SG\n- frontend_alb SG\n- vpn SG\n- bastion SG"/]:::sgNote
+  SG_Notes["Security Groups:<br>- mongodb_vpn: allow 22,27017 from VPN<br>- mongodb_catalogue: allow 27017 from catalogue<br>- mongodb_user: allow 27017 from user<br>- redis_vpn, redis_user, redis_cart<br>- app SGs (catalogue,user,cart,shipping,payment)<br>- backend_alb SG<br>- frontend_alb SG<br>- vpn SG<br>- bastion SG"]
   SG_Notes --> MongoDB
   SG_Notes --> Redis
   SG_Notes --> MySQL
