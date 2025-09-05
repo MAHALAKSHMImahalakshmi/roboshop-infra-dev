@@ -1,3 +1,4 @@
+```mermaid
 flowchart LR
   %% External Users
   U["🧑‍💻 **User Browser**<br/>🔗 https://dev.srivenkata.shop"]
@@ -140,3 +141,4 @@ flowchart LR
   style Redis fill:#b3ffe6,stroke:#00997a,stroke-width:2px,color:#07111a
   style MySQL fill:#b3f0ff,stroke:#006699,stroke-width:2px,color:#07111a
   style RabbitMQ fill:#ffdfb3,stroke:#b36b00,stroke-width:2px,color:#07111a
+```
