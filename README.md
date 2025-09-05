@@ -141,6 +141,4 @@ flowchart LR
   class FrontendApp highlightbox;
   class HostRules highlightbox;
   class SG highlightbox;
-
-
 ```
