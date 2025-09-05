@@ -13,11 +13,11 @@ flowchart LR
     %% Public Subnet
     subgraph Public_Subnet["Public Subnet"]
       direction TB
-      Bastion[Bastion Host\n(SSH jumpbox)]
+      Bastion[Bastion Host \n (SSH jumpbox)]
       VPN((VPN Gateway))
       NAT((NAT Gateway))
-      FE_ALB[[Frontend ALB\n(HTTPS :443)\nRule: dev.srivenkata.shop -> frontend-tg]]
-      Frontend_TG[[Frontend Target Group\n(frontend instances/containers)]]
+      FE_ALB[[Frontend ALB\n(HTTPS :443) \n Rule: dev.srivenkata.shop -> frontend-tg]]
+      Frontend_TG[[Frontend Target Group \n (frontend instances/containers)]]
     end
 
     %% Private Subnet (Apps)
