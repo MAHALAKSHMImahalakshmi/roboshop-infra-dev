@@ -89,23 +89,37 @@ flowchart LR
   SG_Notes --> BE_ALB
   SG_Notes --> FE_ALB
 
-  %% 🎨 Styling for contrast and readability
-  style UserBrowser fill:#e6f0ff,stroke:#004aad,stroke-width:3px,color:#111
-  style VPN_User fill:#e6ffe6,stroke:#009933,stroke-width:3px,color:#111
-  style Bastion_User fill:#ffe6e6,stroke:#cc0000,stroke-width:3px,color:#111
+  %% 🎨 New Styling for contrast and readability
+  style UserBrowser fill:#cce6ff,stroke:#004aad,stroke-width:3px,color:#111
+  style VPN_User fill:#ccffcc,stroke:#009933,stroke-width:3px,color:#111
+  style Bastion_User fill:#ffcccc,stroke:#cc0000,stroke-width:3px,color:#111
 
-  style Public_Subnet fill:#ccf5e1,stroke:#0d9950,stroke-width:4px,color:#111
-  style Private_Subnet fill:#ffd6d6,stroke:#b30000,stroke-width:4px,color:#111
+  style Public_Subnet fill:#b3f0e6,stroke:#00997a,stroke-width:4px,color:#111
+  style Private_Subnet fill:#ffc2b3,stroke:#cc3300,stroke-width:4px,color:#111
   style DB_Subnet fill:#fff0b3,stroke:#e6ac00,stroke-width:4px,color:#111
 
-  style FE_ALB fill:#d6e6ff,stroke:#0040ff,stroke-width:3px,color:#111
-  style BE_ALB fill:#ffcccc,stroke:#cc0000,stroke-width:3px,color:#111
-  style Frontend_TG fill:#d6e6ff,stroke:#0040ff,stroke-width:3px,color:#111
+  style FE_ALB fill:#99ccff,stroke:#0040ff,stroke-width:3px,color:#111
+  style BE_ALB fill:#ff9999,stroke:#b30000,stroke-width:3px,color:#111
+  style Frontend_TG fill:#99ccff,stroke:#0040ff,stroke-width:3px,color:#111
 
-  style MongoDB fill:#d9f2d9,stroke:#006622,stroke-width:2px,color:#111
-  style Redis fill:#d9f2d9,stroke:#006622,stroke-width:2px,color:#111
-  style MySQL fill:#d9f2d9,stroke:#006622,stroke-width:2px,color:#111
-  style RabbitMQ fill:#d9f2d9,stroke:#006622,stroke-width:2px,color:#111
+  %% Application services with better contrast
+  style Catalogue fill:#66d9cc,stroke:#008080,stroke-width:2px,color:#111
+  style User fill:#66c2ff,stroke:#0059b3,stroke-width:2px,color:#111
+  style Cart fill:#ffb366,stroke:#cc5200,stroke-width:2px,color:#111
+  style Shipping fill:#ffd966,stroke:#b38600,stroke-width:2px,color:#111
+  style Payment fill:#ff99cc,stroke:#b30059,stroke-width:2px,color:#111
 
-  style SG_Notes fill:#fff7cc,stroke:#e6a800,stroke-width:3px,color:#111
+  %% Databases with greenish contrast
+  style MongoDB fill:#b3ffcc,stroke:#009933,stroke-width:2px,color:#111
+  style Redis fill:#b3ffe6,stroke:#00997a,stroke-width:2px,color:#111
+  style MySQL fill:#b3f0ff,stroke:#006699,stroke-width:2px,color:#111
+  style RabbitMQ fill:#ffcc99,stroke:#cc6600,stroke-width:2px,color:#111
+
+  %% Security Groups notes with orange contrast
+  style SG_Notes fill:#ffe6b3,stroke:#cc7a00,stroke-width:3px,color:#222
+
+
+
+
+
 ```
