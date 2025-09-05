@@ -93,52 +93,18 @@ flowchart LR
   SG --> BEALB
   SG --> FEALB
 
-  %% Styling classes (vibrant, high-contrast)
-  class U,V,BUser,Bastion,VPNGW,NATG,FEALB,FETG,BEALB,FrontendApp,HostRules,Apps,DB,Public,Private,SG Catalogue,UserSvc,Cart,Shipping,Payment,MongoDB,Redis,MySQL,RabbitMQ highlight;
-
-  %% Distinct node classes for apps and DBs
+  %% Classes (fixed syntax)
   class Catalogue,UserSvc,Cart,Shipping,Payment appnode;
   class MongoDB,Redis,MySQL,RabbitMQ dbnode;
   class Public,Private,DB subnode;
   class HostRules highlightbox;
+  class U,V,BUser,Bastion,VPNGW,NATG,FEALB,FETG,BEALB,FrontendApp,SG highlight;
 
   %% Definitions (customize once here)
-  classDef highlight fill:#fff2cc,stroke:#cc7a00,stroke-width:4px,color:#222,stroke-dasharray: 6 3;
+  classDef highlight fill:#e6f7ff,stroke:#0066cc,stroke-width:3px,color:#07111a,font-weight:800;
   classDef appnode fill:#66d9cc,stroke:#007a6b,stroke-width:2px,color:#07111a,font-weight:700;
   classDef dbnode fill:#b3ffcc,stroke:#007a33,stroke-width:2px,color:#07111a,font-weight:700;
-  classDef subnode fill:#ffe6f0,stroke:#c42b7f,stroke-width:4px,color:#111;
-  classDef highlightbox fill:#fff4e6,stroke:#b35600,stroke-width:3px,color:#111,font-weight:800;
-  classDef highlight fill:#e6f7ff,stroke:#0066cc,stroke-width:3px,color:#07111a,font-weight:800;
+  classDef subnode fill:#fff0d9,stroke:#c48f00,stroke-width:4px,color:#07111a;
+  classDef highlightbox fill:#fffaf0,stroke:#b36b00,stroke-width:3px,color:#07111a,font-weight:800;
 
-  %% Additional per-node style tweaks (fine tuning)
-  style U fill:#cce6ff,stroke:#004aad,stroke-width:3px,color:#07111a
-  style V fill:#ccffd9,stroke:#008f39,stroke-width:3px,color:#07111a
-  style BUser fill:#ffd9e6,stroke:#c4005a,stroke-width:3px,color:#07111a
-
-  style Public fill:#dff7f0,stroke:#008060,stroke-width:4px,color:#07111a
-  style Private fill:#ffe6d9,stroke:#b34d00,stroke-width:4px,color:#07111a
-  style DB fill:#fff7cc,stroke:#c48f00,stroke-width:4px,color:#07111a
-
-  style FEALB fill:#99ccff,stroke:#0040b3,stroke-width:3px,color:#07111a
-  style BEALB fill:#ffb3b3,stroke:#b30000,stroke-width:3px,color:#07111a
-  style FETG fill:#cfe6ff,stroke:#004080,stroke-width:2px,color:#07111a
-
-  style FrontendApp fill:#e6f0ff,stroke:#004aad,stroke-width:3px,color:#07111a
-  style HostRules fill:#fffaf0,stroke:#b36b00,stroke-width:3px,color:#07111a
-
-  style SG fill:#fff0d9,stroke:#cc7a00,stroke-width:3px,color:#2a1800
-  style Bastion fill:#dfffe6,stroke:#008f39,stroke-width:2px,color:#07111a
-  style VPNGW fill:#dfffe6,stroke:#008f39,stroke-width:2px,color:#07111a
-  style NATG fill:#f0e6ff,stroke:#5a00b3,stroke-width:2px,color:#07111a
-
-  style Catalogue fill:#66d9cc,stroke:#008080,stroke-width:2px,color:#07111a
-  style UserSvc fill:#66c2ff,stroke:#0059b3,stroke-width:2px,color:#07111a
-  style Cart fill:#ffb366,stroke:#cc5200,stroke-width:2px,color:#07111a
-  style Shipping fill:#ffd966,stroke:#b38600,stroke-width:2px,color:#07111a
-  style Payment fill:#ff99cc,stroke:#b30059,stroke-width:2px,color:#07111a
-
-  style MongoDB fill:#b3ffcc,stroke:#008f39,stroke-width:2px,color:#07111a
-  style Redis fill:#b3ffe6,stroke:#00997a,stroke-width:2px,color:#07111a
-  style MySQL fill:#b3f0ff,stroke:#006699,stroke-width:2px,color:#07111a
-  style RabbitMQ fill:#ffdfb3,stroke:#b36b00,stroke-width:2px,color:#07111a
 ```
