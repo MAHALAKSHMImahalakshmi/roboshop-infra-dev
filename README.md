@@ -1,6 +1,6 @@
 # roboshop-infra-dev
 ```mermaid
-```mermaid
+
 flowchart LR
   %% External Users
   UserBrowser["User Browser<br>https://dev.srivenkata.shop"]
