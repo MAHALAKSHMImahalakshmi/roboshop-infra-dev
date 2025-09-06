@@ -136,4 +136,41 @@ flowchart LR
     style DB stroke:#FFD600,fill:#FFF9C4,color:#000000
     style CDN stroke:#82B1FF,fill:#E3F2FD,color:#000000
     style AWS fill:#E1BEE7,stroke:#AA00FF,color:#000000
+
+%% Make all connecting lines dark/black
+linkStyle 0 stroke:#000,stroke-width:2px
+linkStyle 1 stroke:#000,stroke-width:2px
+linkStyle 2 stroke:#000,stroke-width:2px
+linkStyle 3 stroke:#000,stroke-width:2px
+linkStyle 4 stroke:#000,stroke-width:2px
+linkStyle 5 stroke:#000,stroke-width:2px
+linkStyle 6 stroke:#000,stroke-width:2px
+linkStyle 7 stroke:#000,stroke-width:2px
+linkStyle 8 stroke:#000,stroke-width:2px
+linkStyle 9 stroke:#000,stroke-width:2px
+linkStyle 10 stroke:#000,stroke-width:2px
+linkStyle 11 stroke:#000,stroke-width:2px
+linkStyle 12 stroke:#000,stroke-width:2px
+linkStyle 13 stroke:#000,stroke-width:2px
+linkStyle 14 stroke:#000,stroke-width:2px
+linkStyle 15 stroke:#000,stroke-width:2px
+linkStyle 16 stroke:#000,stroke-width:2px
+linkStyle 17 stroke:#000,stroke-width:2px
+linkStyle 18 stroke:#000,stroke-width:2px
+linkStyle 19 stroke:#000,stroke-width:2px
+linkStyle 20 stroke:#000,stroke-width:2px
+linkStyle 21 stroke:#000,stroke-width:2px
+linkStyle 22 stroke:#000,stroke-width:2px
+linkStyle 23 stroke:#000,stroke-width:2px
+linkStyle 24 stroke:#000,stroke-width:2px
+linkStyle 25 stroke:#000,stroke-width:2px
+linkStyle 26 stroke:#000,stroke-width:2px
+linkStyle 27 stroke:#000,stroke-width:2px
+linkStyle 28 stroke:#000,stroke-width:2px
+linkStyle 29 stroke:#000,stroke-width:2px
+linkStyle 30 stroke:#000,stroke-width:2px
+linkStyle 31 stroke:#000,stroke-width:2px
+linkStyle 32 stroke:#000,stroke-width:2px
+linkStyle 33 stroke:#000,stroke-width:2px
+
     ```
