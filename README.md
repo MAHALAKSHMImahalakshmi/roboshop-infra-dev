@@ -1,4 +1,3 @@
-### roboshop-infra-dev/ 
 ```mermaid
 flowchart LR
  subgraph Public["🌎 **Public Subnet**"]
@@ -9,13 +8,6 @@ flowchart LR
         FEALB["🚦 **Frontend ALB**\n(**HTTPS :443**)"]
         FETG["🎯 **Frontend Target Group**\n(frontend instances / containers)"]
   end
-
- subgraph CDN["🛰️ **Content Delivery (CDN)**"]
-    direction TB
-        CF["☁️ **CloudFront Distribution**\n(🌍 Global Edge Network)\n🔗 cdn.srivenkata.shop"]
-        Edge["📡 **Edge Locations**\n(Cache, SSL termination, WAF ready)"]
-  end
-
  subgraph Apps["🛠️ **Application Services (AutoScaling / ECS)**"]
     direction TB
         Catalogue["📦 **catalogue**\ncatalogue.backend-dev.srivenkata.shop\nTG: catalogue-tg"]
@@ -24,13 +16,11 @@ flowchart LR
         Shipping["🚚 **shipping**\nshipping.backend-dev.srivenkata.shop\nTG: shipping-tg"]
         Payment["💳 **payment**\npayment.backend-dev.srivenkata.shop\nTG: payment-tg"]
   end
-
  subgraph Private["🔒 **Private Subnet (App Layer)**"]
     direction TB
         BEALB["🚦 **Backend ALB**\n(**HTTP :80**)"]
         Apps
   end
-
  subgraph DB["🗄️ **Database Subnet (Private)**"]
     direction TB
         MongoDB["🍃 **MongoDB**"]
@@ -38,55 +28,37 @@ flowchart LR
         MySQL["🐬 **MySQL**"]
         RabbitMQ["🐇 **RabbitMQ**"]
   end
-
  subgraph AWS["☁️ **AWS Account**"]
     direction LR
-        CDN
         Public
         Private
         DB
   end
-
- %% Flow Connections
-    U[/"🧑‍💻 **User Browser**\n🔗 https://dev.srivenkata.shop"/] -- 🔒 **HTTPS 443** --> CF
-    CF --> Edge
-    Edge -- 🔒 **HTTPS 443** --> FEALB
+    U[/"🧑‍💻 **User Browser**\n🔗 https://dev.srivenkata.shop"/] -- 🔒 **HTTPS 443** --> FEALB
     FEALB --> FETG
     FETG --> FrontendApp["🌐 **Frontend App**\n(**SPA + proxies /api/***)"]
     FrontendApp -- 🔐 proxied API calls --> BEALB
-
-    %% Backend ALB routing
     BEALB -- "🗂️ catalogue.host" --> Catalogue
     BEALB -- "🗂️ user.host" --> UserSvc
     BEALB -- "🗂️ cart.host" --> Cart
     BEALB -- "🗂️ shipping.host" --> Shipping
     BEALB -- "🗂️ payment.host" --> Payment
-
-    %% DB Connections
     Catalogue -- 🔌 **27017** --> MongoDB
     UserSvc -- 🔌 **27017** --> MongoDB
     Cart -- 🔌 **5679** --> Redis
     UserSvc -- 🔌 **5679** --> Redis
     Shipping -- 🔌 **3306** --> MySQL
     Payment -- 🔌 **5672** --> RabbitMQ
-
-    %% Admin Access
     V[/"🛡️ **Remote User via VPN**"/] --> VPNGW
     VPNGW -- 🔑 **Mgmt SSH & DB access** --> MongoDB
     BUser[/"🔑 **Admin via Bastion**"/] --> Bastion
     Bastion -- 🔑 **SSH to App + DB** --> Catalogue
     Bastion --> FETG & MongoDB
-
-    %% Egress
     FrontendApp -- 🌐 **egress** --> NATG
     Catalogue -- 🌐 **egress** --> NATG
-
-    %% Security
-    SG["🛡️ **Security Groups**:\n• mongodb_vpn: allow 22,27017 from VPN\n• mongodb_catalogue: allow 27017 from catalogue\n• mongodb_user: allow 27017 from user\n• redis_vpn/user/cart\n• app SGs (catalogue,user,cart,shipping,payment)\n• backend_alb SG / frontend_alb SG / vpn SG / bastion SG\n• cdn_alb SG"] --> MongoDB & Redis & MySQL & RabbitMQ & Catalogue & BEALB & FEALB & CF
-
+    SG["🛡️ **Security Groups**:\n• mongodb_vpn: allow 22,27017 from VPN\n• mongodb_catalogue: allow 27017 from catalogue\n• mongodb_user: allow 27017 from user\n• redis_vpn/user/cart\n• app SGs (catalogue,user,cart,shipping,payment)\n• backend_alb SG / frontend_alb SG / vpn SG / bastion SG"] --> MongoDB & Redis & MySQL & RabbitMQ & Catalogue & BEALB & FEALB
     HostRules["🗂️ **Host routing (backend ALB)**\n• catalogue.backend-dev.srivenkata.shop\n• user.backend-dev.srivenkata.shop\n• cart.backend-dev.srivenkata.shop\n• shipping.backend-dev.srivenkata.shop\n• payment.backend-dev.srivenkata.shop"]
 
- %% Style Classes
      Bastion:::userbox
      VPNGW:::vpnbox
      NATG:::febox
@@ -108,9 +80,6 @@ flowchart LR
      BUser:::bastbox
      SG:::highlightbox
      HostRules:::highlightbox
-     CF:::febox
-     Edge:::highlightbox
-
     classDef subnet fill:#FFF4E6,stroke:#B36B00,stroke-width:4px,color:#1b1b1b
     classDef public fill:#DFF7F0,stroke:#008060,stroke-width:4px,color:#07111a
     classDef private fill:#FFE6D9,stroke:#B34D00,stroke-width:4px,color:#07111a
@@ -134,43 +103,7 @@ flowchart LR
     style Public stroke:#00C853,fill:#C8E6C9,color:#000000
     style Private stroke:#2962FF,fill:#BBDEFB
     style DB stroke:#FFD600,fill:#FFF9C4,color:#000000
-    style CDN stroke:#82B1FF,fill:#E3F2FD,color:#000000
     style AWS fill:#E1BEE7,stroke:#AA00FF,color:#000000
 
-%% Make all connecting lines dark/black
-linkStyle 0 stroke:#000,stroke-width:2px
-linkStyle 1 stroke:#000,stroke-width:2px
-linkStyle 2 stroke:#000,stroke-width:2px
-linkStyle 3 stroke:#000,stroke-width:2px
-linkStyle 4 stroke:#000,stroke-width:2px
-linkStyle 5 stroke:#000,stroke-width:2px
-linkStyle 6 stroke:#000,stroke-width:2px
-linkStyle 7 stroke:#000,stroke-width:2px
-linkStyle 8 stroke:#000,stroke-width:2px
-linkStyle 9 stroke:#000,stroke-width:2px
-linkStyle 10 stroke:#000,stroke-width:2px
-linkStyle 11 stroke:#000,stroke-width:2px
-linkStyle 12 stroke:#000,stroke-width:2px
-linkStyle 13 stroke:#000,stroke-width:2px
-linkStyle 14 stroke:#000,stroke-width:2px
-linkStyle 15 stroke:#000,stroke-width:2px
-linkStyle 16 stroke:#000,stroke-width:2px
-linkStyle 17 stroke:#000,stroke-width:2px
-linkStyle 18 stroke:#000,stroke-width:2px
-linkStyle 19 stroke:#000,stroke-width:2px
-linkStyle 20 stroke:#000,stroke-width:2px
-linkStyle 21 stroke:#000,stroke-width:2px
-linkStyle 22 stroke:#000,stroke-width:2px
-linkStyle 23 stroke:#000,stroke-width:2px
-linkStyle 24 stroke:#000,stroke-width:2px
-linkStyle 25 stroke:#000,stroke-width:2px
-linkStyle 26 stroke:#000,stroke-width:2px
-linkStyle 27 stroke:#000,stroke-width:2px
-linkStyle 28 stroke:#000,stroke-width:2px
-linkStyle 29 stroke:#000,stroke-width:2px
-linkStyle 30 stroke:#000,stroke-width:2px
-linkStyle 31 stroke:#000,stroke-width:2px
-linkStyle 32 stroke:#000,stroke-width:2px
-linkStyle 33 stroke:#000,stroke-width:2px
 
-    ```
+```
