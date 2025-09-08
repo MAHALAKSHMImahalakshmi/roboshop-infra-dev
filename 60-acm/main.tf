@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "srivenkata" {
-  domain_name       = "*.${var.zone_name}"# dev.
+  domain_name       = "*.${var.zone_name}"# dev.srivenkata.shop
   validation_method = "DNS"
 
   tags = merge(
