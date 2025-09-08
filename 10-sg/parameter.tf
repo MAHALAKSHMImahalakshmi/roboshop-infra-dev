@@ -4,12 +4,14 @@
   name  = "/${var.project}/${var.environment}/bastin_sg_id"
   type  = "String"
   value = module.bastin.sg_id
+
 }
 
  resource "aws_ssm_parameter" "backend_alb_sg_id" {
   name  = "/${var.project}/${var.environment}/backend_alb_sg_id"
   type  = "String"
   value = module.backend_alb.sg_id
+   
 }
 
 resource "aws_ssm_parameter" "vpn_sg_id" {
@@ -40,6 +42,7 @@ resource "aws_ssm_parameter" "rabbitmq_sg_id" {
   name  = "/${var.project}/${var.environment}/rabbitmq_sg_id"
   type  = "String"
   value = module.rabbitmq.sg_id
+    overwrite = true
 }
 
 
