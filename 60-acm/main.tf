@@ -1,5 +1,6 @@
 resource "aws_acm_certificate" "srivenkata" {
-  domain_name       = "*.${var.zone_name}"# dev.srivenkata.shop
+  domain_name       = "*.${var.zone_name}"# dev.srivenkata.shop 
+  // changed domaain from dev to * because to raise certificate for cdn.srivenkata.shop cloudfront
   validation_method = "DNS"
 
   tags = merge(
