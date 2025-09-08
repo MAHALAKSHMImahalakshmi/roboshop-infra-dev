@@ -1,23 +1,23 @@
 resource "aws_cloudfront_distribution" "roboshop" {
   origin {
-    domain_name = "cdn.${var.zone_name}"
+    domain_name = "dev.${var.zone_name}" # error give origin name specified in in frontend-alb cdn is not mentioned so error
     custom_origin_config  {
         http_port              = 80 // Required to be set but not used
         https_port             = 443
         origin_protocol_policy = "https-only"
         origin_ssl_protocols   = ["TLSv1.2"]
     }
-    origin_id                = "cdn.${var.zone_name}"
+    origin_id                = "dev.${var.zone_name}"
   }
 
   enabled             = true
 
-  aliases = ["dev.srivenkata.shop"] #changed
+  aliases = ["cdn.srivenkata.shop"] #changed
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "cdn.${var.zone_name}"
+    target_origin_id = "dev.${var.zone_name}"
 
     viewer_protocol_policy = "https-only"
     cache_policy_id  = data.aws_cloudfront_cache_policy.cacheDisable.id
@@ -28,7 +28,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
     path_pattern     = "/media/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = "cdn.${var.zone_name}"
+    target_origin_id = "dev.${var.zone_name}"
 
     viewer_protocol_policy = "https-only"
     cache_policy_id  = data.aws_cloudfront_cache_policy.cacheEnable.id
@@ -40,7 +40,7 @@ resource "aws_cloudfront_distribution" "roboshop" {
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE"]
+      locations        = ["US", "CA", "GB", "DE", "IN"]
     }
   }
 
