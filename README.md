@@ -83,14 +83,21 @@ flowchart LR
   VPNGW -- 🔑 **Mgmt SSH & DB access** --> MongoDB
   BUser --> Bastion
   Bastion -- 🔑 **SSH to App + DB** --> Catalogue
-  Bastion --> FETG & MongoDB
+  Bastion --> FETG
+  Bastion --> MongoDB
 
   %% Egress (in black)
   FrontendApp -- 🌐 **egress** --> NATG
   Catalogue -- 🌐 **egress** --> NATG
 
   %% Security Groups
-  SG["🛡️ **Security Groups**:\n• mongodb_vpn: allow 22,27017 from VPN\n• mongodb_catalogue: allow 27017 from catalogue\n• mongodb_user: allow 27017 from user\n• redis_vpn/user/cart\n• app SGs (catalogue,user,cart,shipping,payment)\n• backend_alb SG / frontend_alb SG / vpn SG / bastion SG"] --> MongoDB & Redis & MySQL & RabbitMQ & Catalogue & BEALB & FEALB
+  SG["🛡️ **Security Groups**:\n• mongodb_vpn: allow 22,27017 from VPN\n• mongodb_catalogue: allow 27017 from catalogue\n• mongodb_user: allow 27017 from user\n• redis_vpn/user/cart\n• app SGs (catalogue,user,cart,shipping,payment)\n• backend_alb SG / frontend_alb SG / vpn SG / bastion SG"] --> MongoDB
+  SG --> Redis
+  SG --> MySQL
+  SG --> RabbitMQ
+  SG --> Catalogue
+  SG --> BEALB
+  SG --> FEALB
 
   %% Host Rules
   HostRules["🗂️ **Host routing (backend ALB)**\n• catalogue.backend-dev.srivenkata.shop\n• user.backend-dev.srivenkata.shop\n• cart.backend-dev.srivenkata.shop\n• shipping.backend-dev.srivenkata.shop\n• payment.backend-dev.srivenkata.shop"]
