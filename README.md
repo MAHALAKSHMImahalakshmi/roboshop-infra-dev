@@ -262,7 +262,7 @@ flowchart LR
 
 ## 💡 **Why This Matters**
 
-This repo is a top 1% example of how to build, automate, and secure cloud-native microservices on AWS.  
+This repo is a example of how to build, automate, and secure cloud-native microservices on AWS.  
 Every folder, module, and script is designed for clarity, reusability, and real-world reliability.
 
 ---
