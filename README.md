@@ -10,16 +10,11 @@ flowchart LR
   end
  subgraph Apps["🛠️ **Application Services (AutoScaling / ECS)**"]
     direction TB
-
-
-
-
         Catalogue["📦 **catalogue**\ncatalogue.backend-dev.srivenkata.shop\nTG: catalogue-tg"]
         UserSvc["👤 **user**\nuser.backend-dev.srivenkata.shop\nTG: user-tg"]
         Cart["🛒 **cart**\ncart.backend-dev.srivenkata.shop\nTG: cart-tg"]
         Shipping["🚚 **shipping**\nshipping.backend-dev.srivenkata.shop\nTG: shipping-tg"]
         Payment["💳 **payment**\npayment.backend-dev.srivenkata.shop\nTG: payment-tg"]
-
   end
  subgraph Private["🔒 **Private Subnet (App Layer)**"]
     direction TB
@@ -105,7 +100,10 @@ flowchart LR
     classDef bebox fill:#FFB3B3,stroke:#B30000,stroke-width:3px,color:#041617,font-weight:800
     classDef highlightbox fill:#FFF4E6,stroke:#B36B00,stroke-width:3px,color:#041617,font-weight:800
     style Apps stroke:#FF6D00,fill:#FFE0B2
-    style Public stroke:#00C853,fill:#C8E6C9
+    style Public stroke:#00C853,fill:#C8E6C9,color:#000000
     style Private stroke:#2962FF,fill:#BBDEFB
-    style DB stroke:#FFD600,fill:#FFF9C4
-    style AWS fill:#E1BEE7,stroke:#AA00FF
+    style DB stroke:#FFD600,fill:#FFF9C4,color:#000000
+    style AWS fill:#E1BEE7,stroke:#AA00FF,color:#000000
+
+
+```
