@@ -53,10 +53,17 @@ flowchart LR
     VPNGW -- 🔑 **Mgmt SSH & DB access** --> MongoDB
     BUser[/"🔑 **Admin via Bastion**"/] --> Bastion
     Bastion -- 🔑 **SSH to App + DB** --> Catalogue
-    Bastion --> FETG & MongoDB
+    Bastion --> FETG
+    Bastion --> MongoDB
     FrontendApp -- 🌐 **egress** --> NATG
     Catalogue -- 🌐 **egress** --> NATG
-    SG["🛡️ **Security Groups**:\n• mongodb_vpn: allow 22,27017 from VPN\n• mongodb_catalogue: allow 27017 from catalogue\n• mongodb_user: allow 27017 from user\n• redis_vpn/user/cart\n• app SGs (catalogue,user,cart,shipping,payment)\n• backend_alb SG / frontend_alb SG / vpn SG / bastion SG"] --> MongoDB & Redis & MySQL & RabbitMQ & Catalogue & BEALB & FEALB
+    SG["🛡️ **Security Groups**:\n• mongodb_vpn: allow 22,27017 from VPN\n• mongodb_catalogue: allow 27017 from catalogue\n• mongodb_user: allow 27017 from user\n• redis_vpn/user/cart\n• app SGs (catalogue,user,cart,shipping,payment)\n• backend_alb SG / frontend_alb SG / vpn SG / bastion SG"] --> MongoDB
+    SG --> Redis
+    SG --> MySQL
+    SG --> RabbitMQ
+    SG --> Catalogue
+    SG --> BEALB
+    SG --> FEALB
     HostRules["🗂️ **Host routing (backend ALB)**\n• catalogue.backend-dev.srivenkata.shop\n• user.backend-dev.srivenkata.shop\n• cart.backend-dev.srivenkata.shop\n• shipping.backend-dev.srivenkata.shop\n• payment.backend-dev.srivenkata.shop"]
 
      Bastion:::userbox
@@ -105,5 +112,6 @@ flowchart LR
     style DB stroke:#FFD600,fill:#FFF9C4,color:#000000
     style AWS fill:#E1BEE7,stroke:#AA00FF,color:#000000
 
-
+    %% Make all connecting lines black
+    linkStyle default stroke:#000,stroke-width:2px
 ```
